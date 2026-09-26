@@ -1,0 +1,22 @@
+title: Haazelnnut
+email: your-email@example.com
+description: >-
+  An example Jekyll site using the Minima theme, ready to deploy on GitHub Pages.
+baseurl: ""
+url: "https://haazelnnut.github.io"
+twitter_username:
+github_username:  Haazelnnut
+
+theme: minima
+
+minima:
+  skin: auto
+  social_links:
+    - { platform: github, user_url: "https://github.com/Haazelnnut" }
+
+header_pages:
+  - about.md
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
