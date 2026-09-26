@@ -1,0 +1,59 @@
+# Placeholder content for each desktop window.
+# Edit the text below with your own info — nothing here is wired to real
+# accounts or files yet.
+
+about:
+  title: About
+  icon: "🧑‍💻"
+  body: |
+    <p><strong>Hi, I'm [Your Name]!</strong> 👋</p>
+    <p>This is placeholder bio text — swap it out for your own story.
+    Talk about what you do, what you're into, and what you're working on.</p>
+    <ul>
+      <li>🎓 Placeholder education / background</li>
+      <li>💻 Placeholder skills or tools</li>
+      <li>🌱 Placeholder current interests</li>
+    </ul>
+    <p>Replace this whole block in <code>_data/windows.yml</code>.</p>
+
+work:
+  title: Work
+  icon: "🛠️"
+  items:
+    - name: "Placeholder Project One"
+      tags: "Web · Design"
+      description: "A short description of a project goes here. Swap this out for something real."
+      link: "#"
+    - name: "Placeholder Project Two"
+      tags: "Code · Tools"
+      description: "Another placeholder project card. Add a link and screenshot when ready."
+      link: "#"
+    - name: "Placeholder Project Three"
+      tags: "Illustration"
+      description: "A third placeholder entry — delete or duplicate this block per project."
+      link: "#"
+
+links:
+  title: Links
+  icon: "🔗"
+  items:
+    - label: "GitHub"
+      url: "https://github.com/Haazelnnut"
+      icon: "🐙"
+    - label: "Placeholder — Twitter/X"
+      url: "#"
+      icon: "🐦"
+    - label: "Placeholder — Instagram"
+      url: "#"
+      icon: "📸"
+    - label: "Placeholder — YouTube"
+      url: "#"
+      icon: "▶️"
+
+contact:
+  title: Contact
+  icon: "✉️"
+  body: |
+    <p>Want to get in touch? Placeholder contact info below:</p>
+    <p>📧 <a href="mailto:hello@example.com">hello@example.com</a></p>
+    <p>Swap the address above for your real one in <code>_data/windows.yml</code>.</p>

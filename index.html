@@ -1,0 +1,111 @@
+---
+layout: null
+permalink: /
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ site.title }}</title>
+  <meta name="description" content="{{ site.description }}">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  {% seo %}
+</head>
+<body data-theme="light">
+
+  <!-- animated water / stars background -->
+  <div id="water-bg" aria-hidden="true">
+    <div id="stars"></div>
+    <svg class="wave wave-back" viewBox="0 0 1600 220" preserveAspectRatio="none">
+      <path d="M0,110 C200,180 400,40 600,110 C800,180 1000,40 1200,110 C1400,180 1500,90 1600,110
+               L1600,220 L0,220 Z
+               M1600,110 C1800,180 2000,40 2200,110 C2400,180 2600,40 2800,110 C3000,180 3100,90 3200,110
+               L3200,220 L1600,220 Z"/>
+    </svg>
+    <svg class="wave wave-mid" viewBox="0 0 1600 220" preserveAspectRatio="none">
+      <path d="M0,130 C150,80 350,180 600,120 C850,60 1050,170 1300,120 C1450,90 1550,110 1600,120
+               L1600,220 L0,220 Z
+               M1600,120 C1750,80 1950,180 2200,120 C2450,60 2650,170 2900,120 C3050,90 3150,110 3200,120
+               L3200,220 L1600,220 Z"/>
+    </svg>
+    <svg class="wave wave-front" viewBox="0 0 1600 220" preserveAspectRatio="none">
+      <path d="M0,150 C250,190 450,110 700,150 C950,190 1150,110 1400,150 C1500,165 1560,150 1600,150
+               L1600,220 L0,220 Z
+               M1600,150 C1850,190 2050,110 2300,150 C2550,190 2750,110 3000,150 C3100,165 3160,150 3200,150
+               L3200,220 L1600,220 Z"/>
+    </svg>
+    <div id="bubbles"></div>
+  </div>
+  <div id="ripple-layer" aria-hidden="true"></div>
+
+  <!-- top bar -->
+  <header id="topbar">
+    <span class="brand">{{ site.title }}</span>
+    <div class="controls">
+      <button id="music-toggle" class="pill-button" aria-pressed="false" title="Play background music">
+        <span class="icon">🔈</span><span class="label">music</span>
+      </button>
+      <button id="theme-toggle" class="pill-button" aria-pressed="false" title="Toggle dark mode">
+        <span class="icon">🌙</span><span class="label">dark</span>
+      </button>
+    </div>
+  </header>
+
+  <p id="hint">psst — drag windows by their title bar, and try clicking the water ✨</p>
+
+  <!-- windows -->
+  <main id="desktop">
+    {% for pair in site.data.windows %}
+      {% assign key = pair[0] %}
+      {% assign win = pair[1] %}
+      <section class="window" id="window-{{ key }}" data-key="{{ key }}" hidden>
+        <div class="window-titlebar">
+          <span class="window-title">{{ win.icon }} {{ win.title }}</span>
+          <button class="window-close" aria-label="Close {{ win.title }}">✕</button>
+        </div>
+        <div class="window-body">
+          {% if key == "work" %}
+            <div class="work-grid">
+              {% for item in win.items %}
+                <a class="work-card" href="{{ item.link }}">
+                  <h3>{{ item.name }}</h3>
+                  <p class="work-tags">{{ item.tags }}</p>
+                  <p>{{ item.description }}</p>
+                </a>
+              {% endfor %}
+            </div>
+          {% elsif key == "links" %}
+            <ul class="links-list">
+              {% for item in win.items %}
+                <li><a href="{{ item.url }}" target="_blank" rel="noopener">{{ item.icon }} {{ item.label }}</a></li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            {{ win.body }}
+          {% endif %}
+        </div>
+      </section>
+    {% endfor %}
+  </main>
+
+  <!-- dock -->
+  <nav id="dock">
+    {% for pair in site.data.windows %}
+      {% assign key = pair[0] %}
+      {% assign win = pair[1] %}
+      <button class="dock-icon" data-target="window-{{ key }}">
+        <span class="dock-emoji">{{ win.icon }}</span>
+        <span class="dock-label">{{ win.title }}</span>
+      </button>
+    {% endfor %}
+  </nav>
+
+  <audio id="bgm" loop preload="none">
+    <source src="{{ '/assets/audio/bgm.mp3' | relative_url }}" type="audio/mpeg">
+  </audio>
+
+  <script src="{{ '/assets/js/app.js' | relative_url }}"></script>
+</body>
+</html>

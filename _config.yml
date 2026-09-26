@@ -1,22 +1,16 @@
 title: Haazelnnut
 email: your-email@example.com
 description: >-
-  An example Jekyll site using the Minima theme, ready to deploy on GitHub Pages.
+  An interactive desktop-style portfolio with draggable windows,
+  a light/dark mode with animated water, and optional background music.
 baseurl: ""
 url: "https://haazelnnut.github.io"
-twitter_username:
-github_username:  Haazelnnut
-
-theme: minima
-
-minima:
-  skin: auto
-  social_links:
-    - { platform: github, user_url: "https://github.com/Haazelnnut" }
-
-header_pages:
-  - about.md
+github_username: Haazelnnut
 
 plugins:
-  - jekyll-feed
   - jekyll-seo-tag
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
