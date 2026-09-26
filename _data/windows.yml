@@ -6,11 +6,11 @@ about:
   title: About
   icon: "🧑‍💻"
   body: |
-    <p><strong>Hi, I'm [Your Name]!</strong> 👋</p>
+    <p><strong>Hi, I'm Jason!</strong> 👋</p>
     <p>This is placeholder bio text — swap it out for your own story.
     Talk about what you do, what you're into, and what you're working on.</p>
     <ul>
-      <li>🎓 Placeholder education / background</li>
+      <li>🎓 University of British Columbia / background</li>
       <li>💻 Placeholder skills or tools</li>
       <li>🌱 Placeholder current interests</li>
     </ul>
@@ -55,5 +55,5 @@ contact:
   icon: "✉️"
   body: |
     <p>Want to get in touch? Placeholder contact info below:</p>
-    <p>📧 <a href="mailto:hello@example.com">hello@example.com</a></p>
+    <p>📧 <a href="mailto:hello@example.com">cheesemancheddar10@gmail.com</a></p>
     <p>Swap the address above for your real one in <code>_data/windows.yml</code>.</p>
