@@ -55,5 +55,5 @@ contact:
   icon: "✉️"
   body: |
     <p>Want to get in touch? Placeholder contact info below:</p>
-    <p>📧 <a href="mailto:pop@example.com">pop@gmail.com</a></p>
+    <p>📧 <a href="mailto:hello@example.com">hello@example.com</a></p>
     <p>Swap the address above for your real one in <code>_data/windows.yml</code>.</p>

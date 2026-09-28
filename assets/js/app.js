@@ -87,6 +87,7 @@
   var zTop = 10;
   var openedBefore = {};
   var CASCADE_STEP = 32;
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function isDraggable() {
     return window.matchMedia("(min-width: 641px)").matches;
@@ -97,7 +98,7 @@
     win.style.zIndex = zTop;
   }
 
-  function openWindow(win, index) {
+  function openWindow(win, index, sourceEl) {
     if (!openedBefore[win.id]) {
       openedBefore[win.id] = true;
       var offset = index * CASCADE_STEP;
@@ -106,10 +107,32 @@
     }
     win.hidden = false;
     bringToFront(win);
+    if (reduceMotion) return;
+
+    // Pop the window in from the icon that opened it, like a genie effect.
+    var winRect = win.getBoundingClientRect();
+    var originX = winRect.width / 2;
+    var originY = winRect.height / 2;
+    if (sourceEl) {
+      var srcRect = sourceEl.getBoundingClientRect();
+      originX = (srcRect.left + srcRect.width / 2) - winRect.left;
+      originY = (srcRect.top + srcRect.height / 2) - winRect.top;
+    }
+    win.style.transformOrigin = originX + "px " + originY + "px";
+    win.classList.remove("popping-out");
+    void win.offsetWidth; // restart the animation even if it was already run once
+    win.classList.add("popping-in");
   }
 
   function closeWindow(win) {
-    win.hidden = true;
+    if (win.hidden || win.classList.contains("popping-out")) return;
+    if (reduceMotion) {
+      win.hidden = true;
+      return;
+    }
+    win.classList.remove("popping-in");
+    void win.offsetWidth;
+    win.classList.add("popping-out");
   }
 
   windows.forEach(function (win, index) {
@@ -119,6 +142,16 @@
     closeBtn.addEventListener("click", function (e) {
       e.stopPropagation();
       closeWindow(win);
+    });
+
+    win.addEventListener("animationend", function (e) {
+      if (e.target !== win) return;
+      if (e.animationName === "window-pop-out") {
+        win.hidden = true;
+        win.classList.remove("popping-out");
+      } else if (e.animationName === "window-pop-in") {
+        win.classList.remove("popping-in");
+      }
     });
 
     win.addEventListener("mousedown", function () { bringToFront(win); });
@@ -160,14 +193,10 @@
       var win = document.getElementById(icon.getAttribute("data-target"));
       if (!win) return;
       if (win.hidden) {
-        openWindow(win, index);
+        openWindow(win, index, icon);
       } else {
         bringToFront(win);
       }
     });
   });
-
-  // Open the About window by default so the desktop isn't empty on first load.
-  var defaultWin = document.getElementById("window-about");
-  if (defaultWin) openWindow(defaultWin, 0);
 })();

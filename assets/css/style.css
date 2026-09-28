@@ -210,6 +210,25 @@ a { color: var(--accent); }
 
 .window[hidden] { display: none; }
 
+@keyframes window-pop-in {
+  from { opacity: 0; transform: scale(0.82); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes window-pop-out {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.82); }
+}
+
+.window.popping-in {
+  animation: window-pop-in 240ms cubic-bezier(0.28, 0.84, 0.42, 1) both;
+}
+
+.window.popping-out {
+  animation: window-pop-out 180ms cubic-bezier(0.4, 0, 0.6, 1) both;
+  pointer-events: none;
+}
+
 .window-titlebar {
   display: flex;
   align-items: center;
@@ -267,46 +286,61 @@ a { color: var(--accent); }
 /* ---------- dock ---------- */
 #dock {
   position: fixed;
-  bottom: 18px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
+  transform: translate(-50%, -50%);
+  z-index: 6;
   display: flex;
-  gap: 8px;
-  padding: 8px 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  padding: 24px 32px;
   background: var(--dock-bg);
   border: 1px solid var(--card-border);
-  border-radius: 18px;
+  border-radius: 28px;
   box-shadow: var(--shadow);
   backdrop-filter: blur(8px);
+  pointer-events: auto;
 }
 
 .dock-icon {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
   border: none;
   background: transparent;
   color: var(--text);
-  padding: 12px 20px;
-  border-radius: 16px;
+  width: 128px;
+  padding: 22px 14px;
+  border-radius: 20px;
   cursor: pointer;
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-size: 1.05rem;
+  font-weight: 600;
   transition: transform 0.15s ease, background 0.15s ease;
 }
 
 .dock-icon:hover { transform: translateY(-4px); background: rgba(255,255,255,0.25); }
-.dock-emoji { font-size: 2.2rem; }
+.dock-emoji { font-size: 3.4rem; }
 
 /* ---------- small screens ---------- */
 @media (max-width: 640px) {
+  #dock {
+    top: auto;
+    bottom: 16px;
+    transform: translateX(-50%);
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 20px;
+    max-width: 94vw;
+  }
+  .dock-icon { width: 76px; padding: 10px 6px; font-size: 0.75rem; }
+  .dock-emoji { font-size: 2rem; }
   .window {
     position: static;
     width: 92vw;
     max-height: none;
-    margin: 90px auto 100px;
+    margin: 90px auto 220px;
   }
   #desktop { display: flex; flex-direction: column; align-items: center; }
   .window-titlebar { cursor: default; }
