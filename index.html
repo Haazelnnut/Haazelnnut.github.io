@@ -10,6 +10,9 @@ permalink: /
   <title>{{ site.title }}</title>
   <meta name="description" content="{{ site.description }}">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   {% seo %}
 </head>
@@ -42,18 +45,16 @@ permalink: /
 
   <!-- top bar -->
   <header id="topbar">
-    <span class="brand">{{ site.title }}</span>
+    <span class="brand">Jason Liu</span>
     <div class="controls">
       <button id="music-toggle" class="pill-button" aria-pressed="false" title="Play background music">
-        <span class="icon">🔈</span><span class="label">music</span>
+        <span class="icon">🔈</span>
       </button>
       <button id="theme-toggle" class="pill-button" aria-pressed="false" title="Toggle dark mode">
-        <span class="icon">🌙</span><span class="label">dark</span>
+        <span class="icon">🌙</span>
       </button>
     </div>
   </header>
-
-  <p id="hint">psst — drag windows by their title bar, and try clicking the water ✨</p>
 
   <!-- windows -->
   <main id="desktop">

@@ -9,7 +9,7 @@
   function applyTheme(theme) {
     root.setAttribute("data-theme", theme);
     themeBtn.querySelector(".icon").textContent = theme === "dark" ? "☀️" : "🌙";
-    themeBtn.querySelector(".label").textContent = theme === "dark" ? "light" : "dark";
+    themeBtn.title = theme === "dark" ? "Switch to light mode" : "Switch to dark mode";
     themeBtn.setAttribute("aria-pressed", theme === "dark");
   }
 
@@ -41,7 +41,7 @@
       bgm.volume = 0.5;
       bgm.play().then(function () {
         musicBtn.querySelector(".icon").textContent = "🔊";
-        musicBtn.querySelector(".label").textContent = "playing";
+        musicBtn.title = "Pause background music";
         musicBtn.setAttribute("aria-pressed", "true");
       }).catch(function () {
         musicReady = false;
@@ -51,7 +51,7 @@
     } else {
       bgm.pause();
       musicBtn.querySelector(".icon").textContent = "🔈";
-      musicBtn.querySelector(".label").textContent = "music";
+      musicBtn.title = "Play background music";
       musicBtn.setAttribute("aria-pressed", "false");
     }
   });
